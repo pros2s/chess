@@ -59,6 +59,8 @@ module.exports = {
     'no-else-return': 2,
     'no-lonely-if': 2,
 
+    'jsx-quotes': ['error', 'prefer-single'],
+
     // typescript
     '@typescript-eslint/no-shadow': ['error'],
     '@typescript-eslint/no-unused-vars': 'warn',
@@ -80,5 +82,9 @@ module.exports = {
     'react/function-component-definition': 'off',
     'react/require-default-props': 'off',
     'implicit-arrow-linebreak': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'function-paren-newline': 'off',
+    'object-curly-newline': 'off',
+    'operator-linebreak': 'off',
   },
 };
