@@ -77,5 +77,8 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     'jest/no-deprecated-functions': 'off',
+    'react/function-component-definition': 'off',
+    'react/require-default-props': 'off',
+    'implicit-arrow-linebreak': 'off',
   },
 };
