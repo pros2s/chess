@@ -1,11 +1,8 @@
-import { Square } from '@/shared/ui/square';
+import { Board } from '@/entities/Board';
+import './App.css';
 
 export function App() {
-  return (
-    <div style={{ height: 600, width: 600 }}>
-      <Square />
-    </div>
-  );
+  return <Board size={500} />;
 }
 
 App.displayName = 'App';
