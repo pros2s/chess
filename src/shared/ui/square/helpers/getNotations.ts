@@ -1,28 +1,28 @@
-import { SquarePositionHType, SquarePositionType, SquarePositionVType } from '../SquareType';
+import { SquareNotationH, SquarePositionType, SquareNotationV } from '../SquareType';
 
 interface Notations {
   position: SquarePositionType;
-  positionVType: SquarePositionVType;
-  positionHType: SquarePositionHType;
+  notationH: SquareNotationH;
+  notationV: SquareNotationV;
 }
 
-export const getNotations = ({ position, positionHType, positionVType }: Notations) => {
-  const isTop = position === 'top' && positionHType === 'top';
-  const isRight = position === 'right' && positionVType === 'right';
-  const isBottom = position === 'bottom' && positionHType === 'bottom';
-  const isLeft = position === 'left' && positionVType === 'left';
+export const getNotations = ({ position, notationH, notationV }: Notations) => {
+  const isTop = position === 'top' && notationH === 'top';
+  const isRight = position === 'right' && notationV === 'right';
+  const isBottom = position === 'bottom' && notationH === 'bottom';
+  const isLeft = position === 'left' && notationV === 'left';
 
-  const isTopLeftNum = position === 'top-left' && positionVType === 'left';
-  const isTopRightNum = position === 'top-right' && positionVType === 'right';
+  const isTopLeftNum = position === 'top-left' && notationV === 'left';
+  const isTopRightNum = position === 'top-right' && notationV === 'right';
 
-  const isTopLeftLet = position === 'top-left' && positionHType === 'top';
-  const isTopRightLet = position === 'top-right' && positionHType === 'top';
+  const isTopLeftLet = position === 'top-left' && notationH === 'top';
+  const isTopRightLet = position === 'top-right' && notationH === 'top';
 
-  const isBottomLeftNum = position === 'bottom-left' && positionVType === 'left';
-  const isBottomRightNum = position === 'bottom-right' && positionVType === 'right';
+  const isBottomLeftNum = position === 'bottom-left' && notationV === 'left';
+  const isBottomRightNum = position === 'bottom-right' && notationV === 'right';
 
-  const isBottomLeftLet = position === 'bottom-left' && positionHType === 'bottom';
-  const isBottomRightLet = position === 'bottom-right' && positionHType === 'bottom';
+  const isBottomLeftLet = position === 'bottom-left' && notationH === 'bottom';
+  const isBottomRightLet = position === 'bottom-right' && notationH === 'bottom';
 
   const letterNotations = [
     isTop,
@@ -52,36 +52,36 @@ export const getNotations = ({ position, positionHType, positionVType }: Notatio
   const isLetBottom = isBottom || isBottomLeftLet || isBottomRightLet;
   const isNumLeft = isLeft || isTopLeftNum || isBottomLeftNum;
 
-  if (isLetTop && positionVType === 'right') {
+  if (isLetTop && notationV === 'right') {
     letClassPos = 'let-top-right';
   }
 
-  if (isNumRight && positionHType === 'top') {
+  if (isNumRight && notationH === 'top') {
     numClassPos = 'num-top-right';
   }
 
-  if (isLetBottom && positionVType === 'right') {
+  if (isLetBottom && notationV === 'right') {
     letClassPos = 'let-bottom-right';
   }
 
-  if (isNumRight && positionHType === 'bottom') {
+  if (isNumRight && notationH === 'bottom') {
     numClassPos = 'num-bottom-right';
   }
 
-  if (isLetTop && positionVType === 'left') {
+  if (isLetTop && notationV === 'left') {
     letClassPos = 'let-top-left';
     numClassPos = 'num-top-left';
   }
 
-  if (isNumLeft && positionHType === 'top') {
+  if (isNumLeft && notationH === 'top') {
     numClassPos = 'num-top-left';
   }
 
-  if (isLetBottom && positionVType === 'left') {
+  if (isLetBottom && notationV === 'left') {
     letClassPos = 'let-bottom-left';
   }
 
-  if (isNumLeft && positionHType === 'bottom') {
+  if (isNumLeft && notationH === 'bottom') {
     numClassPos = 'num-bottom-left';
   }
 

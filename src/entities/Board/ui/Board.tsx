@@ -1,15 +1,15 @@
-import { classNames } from '@/shared/lib/helpers/classNames';
 import { FlexBox } from '@/shared/ui/FlexBox';
 import { Square, SquareLetterType, SquareNumberType } from '@/shared/ui/square';
+import { SquareNotationH, SquareNotationV } from '@/shared/ui/square/SquareType';
 
 import { themes } from '../config/themes';
 import { getIsPrimary } from '../helpers/getIsPrimary';
 import { getSquarePosition } from '../helpers/getSquarePosition';
 import { BoardTheme } from '../model/types/BoardType';
 
-import cls from './Board.module.css';
-
 interface BoardProps {
+  notationV?: SquareNotationV;
+  notationH?: SquareNotationH;
   isFlipped?: boolean;
   theme?: BoardTheme;
   size?: number | string;
@@ -24,19 +24,17 @@ export const Board = ({
   size = '100%',
   theme = 'classic',
   isFlipped = false,
+  notationH,
+  notationV,
 }: BoardProps) => {
   const [primary, secondary] = themes[theme];
 
-  const nums = isFlipped ? numbers.reverse() : numbers;
-  const lets = isFlipped ? letters.reverse() : letters;
+  const nums = isFlipped ? numbers.slice().reverse() : numbers;
+  const lets = isFlipped ? letters.slice().reverse() : letters;
 
   return (
     // cols
-    <FlexBox
-      style={{ height: size, width: size }}
-      className={classNames(cls.board, [className])}
-      direction='column'
-    >
+    <FlexBox style={{ height: size, width: size }} className={className} direction='column'>
       {nums.map((number, i) => (
         // rows
         <FlexBox className='w-100 h-100'>
@@ -54,8 +52,8 @@ export const Board = ({
                 bgPrimary={bgPrimary}
                 bgSecondary={bgSecondary}
                 position={position}
-                positionHType='bottom'
-                positionVType='right'
+                notationH={notationH}
+                notationV={notationV}
                 isFullNotation={false}
               />
             );

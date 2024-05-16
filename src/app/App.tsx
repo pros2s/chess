@@ -1,6 +1,6 @@
-import { Board } from '@/entities/Board';
 import './styles/index.css';
 import { Theme } from '@/features/Theme';
+import { PlayGround } from '@/widgets/PlayGround';
 
 import { useTheme } from './hooks/useTheme';
 
@@ -10,7 +10,7 @@ export function App() {
   return (
     <>
       <Theme />
-      <Board size={700} isFlipped />
+      <PlayGround />
     </>
   );
 }

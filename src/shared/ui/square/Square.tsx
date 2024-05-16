@@ -3,9 +3,9 @@ import { classNames } from '@/shared/lib/helpers/classNames';
 import {
   SquareLetterType,
   SquareNumberType,
-  SquarePositionHType,
+  SquareNotationH,
   SquarePositionType,
-  SquarePositionVType,
+  SquareNotationV,
 } from './SquareType';
 import { getNotations } from './helpers/getNotations';
 
@@ -16,8 +16,8 @@ interface SquareProps {
   number: SquareNumberType;
   isFullNotation?: boolean;
   position?: SquarePositionType;
-  positionVType?: SquarePositionVType;
-  positionHType?: SquarePositionHType;
+  notationV?: SquareNotationV;
+  notationH?: SquareNotationH;
   bgPrimary?: string;
   bgSecondary?: string;
   className?: string;
@@ -30,14 +30,14 @@ export const Square = ({
   bgPrimary,
   bgSecondary,
   position = 'other',
-  positionHType = 'bottom',
-  positionVType = 'left',
+  notationH = 'bottom',
+  notationV = 'left',
   isFullNotation = false,
 }: SquareProps) => {
   const { isLetNotation, isNumNotation, letClassPos, numClassPos } = getNotations({
     position,
-    positionHType,
-    positionVType,
+    notationH,
+    notationV,
   });
 
   return (
