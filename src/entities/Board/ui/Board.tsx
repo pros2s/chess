@@ -3,6 +3,8 @@ import { FlexBox } from '@/shared/ui/FlexBox';
 import { Square, SquareLetterType, SquareNumberType } from '@/shared/ui/square';
 
 import { themes } from '../config/themes';
+import { getIsPrimary } from '../helpers/getIsPrimary';
+import { getSquarePosition } from '../helpers/getSquarePosition';
 import { BoardTheme } from '../model/types/BoardType';
 
 import cls from './Board.module.css';
@@ -30,9 +32,8 @@ export const Board = ({ className, size = '100%', theme = 'classic' }: BoardProp
         // rows
         <FlexBox className='w-100 h-100'>
           {letters.map((letter, i) => {
-            const isPrimary =
-              (number % 2 === 1 && i % 2 === 0) || (number % 2 === 0 && i % 2 === 1);
-            const bgColor = isPrimary ? primary : secondary;
+            const bgColor = getIsPrimary(number, i) ? primary : secondary;
+            const position = getSquarePosition(number, i);
 
             return (
               <Square
@@ -40,6 +41,10 @@ export const Board = ({ className, size = '100%', theme = 'classic' }: BoardProp
                 letter={letter}
                 number={number}
                 bgColor={bgColor}
+                position={position}
+                positionHType='bottom'
+                positionVType='left'
+                isFullNotation={false}
               />
             );
           })}

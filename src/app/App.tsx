@@ -10,7 +10,7 @@ export function App() {
   return (
     <>
       <Theme />
-      <Board size={500} />
+      <Board size={700} />
     </>
   );
 }

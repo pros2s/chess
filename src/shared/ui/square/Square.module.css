@@ -4,6 +4,46 @@
 
 .notation {
   position: absolute;
-  bottom: 2px;
-  left: 2px;
+  font-size: 18px;
+  font-weight: 600;
+
+  &.let-top-right {
+    top: 2px;
+    left: 4px;
+  }
+
+  &.let-bottom-right {
+    bottom: 2px;
+    left: 4px;
+  }
+
+  &.let-top-left {
+    top: 2px;
+    right: 4px;
+  }
+
+  &.let-bottom-left {
+    right: 4px;
+    bottom: 2px;
+  }
+
+  &.num-top-right {
+    right: 2px;
+    bottom: 4px;
+  }
+
+  &.num-bottom-right {
+    top: 4px;
+    right: 2px;
+  }
+
+  &.num-top-left {
+    bottom: 4px;
+    left: 2px;
+  }
+
+  &.num-bottom-left {
+    top: 4px;
+    left: 2px;
+  }
 }
