@@ -10,7 +10,7 @@ export function App() {
   return (
     <>
       <Theme />
-      <Board size={700} />
+      <Board size={700} isFlipped />
     </>
   );
 }

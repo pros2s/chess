@@ -44,17 +44,17 @@ export const Square = ({
       className={classNames(cls.square, ['w-100', 'h-100', className])}
     >
       {!isFullNotation && isLetNotation && (
-        <span className={classNames(cls.notation, [cls[letClassPos]])}>{letter}</span>
+        <p className={classNames(cls.notation, [cls[letClassPos]])}>{letter}</p>
       )}
       {!isFullNotation && isNumNotation && (
-        <span className={classNames(cls.notation, [cls[numClassPos]])}>{number}</span>
+        <p className={classNames(cls.notation, [cls[numClassPos]])}>{number}</p>
       )}
 
       {isFullNotation && (
-        <span className={cls.notation}>
+        <p className={cls.notation}>
           {letter}
           {number}
-        </span>
+        </p>
       )}
     </div>
   );

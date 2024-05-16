@@ -10,6 +10,7 @@ import { BoardTheme } from '../model/types/BoardType';
 import cls from './Board.module.css';
 
 interface BoardProps {
+  isFlipped?: boolean;
   theme?: BoardTheme;
   size?: number | string;
   className?: string;
@@ -18,8 +19,16 @@ interface BoardProps {
 const letters: SquareLetterType[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 const numbers: SquareNumberType[] = [8, 7, 6, 5, 4, 3, 2, 1];
 
-export const Board = ({ className, size = '100%', theme = 'classic' }: BoardProps) => {
+export const Board = ({
+  className,
+  size = '100%',
+  theme = 'classic',
+  isFlipped = false,
+}: BoardProps) => {
   const [primary, secondary] = themes[theme];
+
+  const nums = isFlipped ? numbers.reverse() : numbers;
+  const lets = isFlipped ? letters.reverse() : letters;
 
   return (
     // cols
@@ -28,12 +37,12 @@ export const Board = ({ className, size = '100%', theme = 'classic' }: BoardProp
       className={classNames(cls.board, [className])}
       direction='column'
     >
-      {numbers.map((number) => (
+      {nums.map((number, i) => (
         // rows
         <FlexBox className='w-100 h-100'>
-          {letters.map((letter, i) => {
-            const bgColor = getIsPrimary(number, i) ? primary : secondary;
-            const position = getSquarePosition(number, i);
+          {lets.map((letter, ind) => {
+            const bgColor = getIsPrimary(i, ind) ? primary : secondary;
+            const position = getSquarePosition(i, ind);
 
             return (
               <Square
@@ -43,7 +52,7 @@ export const Board = ({ className, size = '100%', theme = 'classic' }: BoardProp
                 bgColor={bgColor}
                 position={position}
                 positionHType='bottom'
-                positionVType='left'
+                positionVType='right'
                 isFullNotation={false}
               />
             );
