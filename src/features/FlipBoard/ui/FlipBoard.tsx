@@ -1,12 +1,12 @@
 import { useState } from 'preact/hooks';
-import { MdOutlineFlipCameraAndroid } from 'react-icons/md';
+import { FaRotate } from 'react-icons/fa6';
 
 import { classNames } from '@/shared/lib/helpers/classNames';
 
 import cls from './FlipBoard.module.css';
 
 interface FlipBoardProps {
-  onFlip: (isFlipped: boolean) => void;
+  onFlip: () => void;
   className?: string;
 }
 
@@ -15,7 +15,7 @@ export const FlipBoard = ({ className, onFlip }: FlipBoardProps) => {
 
   const handleFlip = () => {
     setIsFlipped((prev) => !prev);
-    onFlip(isFlipped);
+    onFlip();
   };
 
   return (
@@ -25,7 +25,7 @@ export const FlipBoard = ({ className, onFlip }: FlipBoardProps) => {
       label='flip-board'
       onClick={handleFlip}
     >
-      <MdOutlineFlipCameraAndroid size={20} />
+      <FaRotate size={20} />
     </button>
   );
 };

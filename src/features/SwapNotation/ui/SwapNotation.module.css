@@ -1,4 +1,4 @@
-.flip {
+.swap {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,15 +17,27 @@
     transition: transform 0.2s;
   }
 
-  &.flipped {
-    svg {
-      transform: rotate(270deg);
-    }
-  }
-
   &:hover {
     svg {
       opacity: 1;
+    }
+  }
+
+  &.swapped {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.vertical {
+    svg {
+      transform: rotate(90deg);
+    }
+
+    &.swapped {
+      svg {
+        transform: rotate(270deg);
+      }
     }
   }
 }

@@ -5,11 +5,12 @@
 .notation {
   --primary-offset: 5px;
   --secondary-offset: 3px;
-
   position: absolute;
+
   font-size: 18px;
   font-weight: 600;
   line-height: 1;
+  text-shadow: 0 0 10px;
 
   &.let-top-right {
     top: var(--secondary-offset);

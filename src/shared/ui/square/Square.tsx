@@ -30,8 +30,8 @@ export const Square = ({
   bgPrimary,
   bgSecondary,
   position = 'other',
-  notationH = 'bottom',
-  notationV = 'left',
+  notationH,
+  notationV,
   isFullNotation = false,
 }: SquareProps) => {
   const { isLetNotation, isNumNotation, letClassPos, numClassPos } = getNotations({
