@@ -18,7 +18,8 @@ interface SquareProps {
   position?: SquarePositionType;
   positionVType?: SquarePositionVType;
   positionHType?: SquarePositionHType;
-  bgColor?: string;
+  bgPrimary?: string;
+  bgSecondary?: string;
   className?: string;
 }
 
@@ -26,7 +27,8 @@ export const Square = ({
   className,
   letter,
   number,
-  bgColor,
+  bgPrimary,
+  bgSecondary,
   position = 'other',
   positionHType = 'bottom',
   positionVType = 'left',
@@ -40,18 +42,22 @@ export const Square = ({
 
   return (
     <div
-      style={{ backgroundColor: bgColor }}
+      style={{ backgroundColor: bgPrimary }}
       className={classNames(cls.square, ['w-100', 'h-100', className])}
     >
       {!isFullNotation && isLetNotation && (
-        <p className={classNames(cls.notation, [cls[letClassPos]])}>{letter}</p>
+        <p style={{ color: bgSecondary }} className={classNames(cls.notation, [cls[letClassPos]])}>
+          {letter}
+        </p>
       )}
       {!isFullNotation && isNumNotation && (
-        <p className={classNames(cls.notation, [cls[numClassPos]])}>{number}</p>
+        <p style={{ color: bgSecondary }} className={classNames(cls.notation, [cls[numClassPos]])}>
+          {number}
+        </p>
       )}
 
       {isFullNotation && (
-        <p className={cls.notation}>
+        <p style={{ color: bgSecondary }} className={cls.notation}>
           {letter}
           {number}
         </p>

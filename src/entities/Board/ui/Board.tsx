@@ -41,7 +41,9 @@ export const Board = ({
         // rows
         <FlexBox className='w-100 h-100'>
           {lets.map((letter, ind) => {
-            const bgColor = getIsPrimary(i, ind) ? primary : secondary;
+            const bgPrimary = getIsPrimary(i, ind) ? primary : secondary;
+            const bgSecondary = getIsPrimary(i, ind) ? secondary : primary;
+
             const position = getSquarePosition(i, ind);
 
             return (
@@ -49,7 +51,8 @@ export const Board = ({
                 key={`${letter}${number}`}
                 letter={letter}
                 number={number}
-                bgColor={bgColor}
+                bgPrimary={bgPrimary}
+                bgSecondary={bgSecondary}
                 position={position}
                 positionHType='bottom'
                 positionVType='right'

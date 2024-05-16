@@ -3,47 +3,51 @@
 }
 
 .notation {
+  --primary-offset: 5px;
+  --secondary-offset: 3px;
+
   position: absolute;
   font-size: 18px;
   font-weight: 600;
+  line-height: 1;
 
   &.let-top-right {
-    top: 2px;
-    left: 4px;
+    top: var(--secondary-offset);
+    left: var(--primary-offset);
   }
 
   &.let-bottom-right {
-    bottom: 2px;
-    left: 4px;
+    bottom: var(--secondary-offset);
+    left: var(--primary-offset);
   }
 
   &.let-top-left {
-    top: 2px;
-    right: 4px;
+    top: var(--secondary-offset);
+    right: var(--primary-offset);
   }
 
   &.let-bottom-left {
-    right: 4px;
-    bottom: 2px;
+    right: var(--primary-offset);
+    bottom: var(--secondary-offset);
   }
 
   &.num-top-right {
-    right: 2px;
-    bottom: 4px;
+    right: var(--secondary-offset);
+    bottom: var(--primary-offset);
   }
 
   &.num-bottom-right {
-    top: 4px;
-    right: 2px;
+    top: var(--primary-offset);
+    right: var(--secondary-offset);
   }
 
   &.num-top-left {
-    bottom: 4px;
-    left: 2px;
+    bottom: var(--primary-offset);
+    left: var(--secondary-offset);
   }
 
   &.num-bottom-left {
-    top: 4px;
-    left: 2px;
+    top: var(--primary-offset);
+    left: var(--secondary-offset);
   }
 }
