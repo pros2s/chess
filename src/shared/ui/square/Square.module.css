@@ -1,0 +1,9 @@
+.square {
+  position: relative;
+}
+
+.notation {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+}

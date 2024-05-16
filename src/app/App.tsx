@@ -1,5 +1,5 @@
 import { Board } from '@/entities/Board';
-import './App.css';
+import './styles/index.css';
 
 export function App() {
   return <Board size={500} />;
