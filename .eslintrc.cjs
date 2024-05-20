@@ -78,7 +78,6 @@ module.exports = {
         ignoreFilesPatterns: ['**/app/**'],
       },
     ],
-
     // off
     'import/no-extraneous-dependencies': 'off',
     'import/no-unresolved': 'off',
@@ -94,6 +93,7 @@ module.exports = {
     'function-paren-newline': 'off',
     'object-curly-newline': 'off',
     'operator-linebreak': 'off',
+    indent: 'off',
 
     // mobx
     'mobx/missing-observer': 'off',

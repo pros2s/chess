@@ -1,7 +1,8 @@
 import { FlexBox } from '@/shared/ui/FlexBox';
-import { Square, SquareLetterType, SquareNumberType } from '@/shared/ui/square';
+import { Square } from '@/shared/ui/square';
 import { SquareNotationH, SquareNotationV } from '@/shared/ui/square/SquareType';
 
+import { letters, numbers } from '../config/notation';
 import { piecesIcons } from '../config/piecesIcons';
 import { themesCfg } from '../config/themes';
 import { getIsPrimary } from '../helpers/getIsPrimary';
@@ -18,9 +19,6 @@ interface BoardProps {
   size?: number | string;
   className?: string;
 }
-
-const letters: SquareLetterType[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-const numbers: SquareNumberType[] = [8, 7, 6, 5, 4, 3, 2, 1];
 
 export const Board = ({
   className,
@@ -47,8 +45,8 @@ export const Board = ({
             const bgPrimary = getIsPrimary(i, ind) ? primary : secondary;
             const bgSecondary = getIsPrimary(i, ind) ? secondary : primary;
 
-            const position = getSquarePosition(i, ind);
             const piece = getStartPosition(number, letter);
+            const position = getSquarePosition(i, ind);
 
             return (
               <Square

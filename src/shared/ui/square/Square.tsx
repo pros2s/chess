@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'preact/hooks';
+
 import { classNames } from '@/shared/lib/helpers/classNames';
 
 import {
@@ -16,8 +18,9 @@ import cls from './Square.module.css';
 interface SquareProps {
   letter: SquareLetterType;
   number: SquareNumberType;
-  piece: SquarePieceType;
   icons: SquarePieceIconsType;
+  piece: SquarePieceType | null;
+
   isFullNotation?: boolean;
   position?: SquarePositionType;
   notationV?: SquareNotationV;
@@ -40,7 +43,15 @@ export const Square = ({
   icons,
   piece,
 }: SquareProps) => {
-  const { color, name } = piece;
+  const [currentPiece, setCurrentPiece] = useState<SquarePieceType>({ name: 'empty' });
+
+  useEffect(() => {
+    if (!piece) return;
+
+    setCurrentPiece(piece);
+  }, [piece]);
+
+  const { color, name } = currentPiece;
 
   const { isLetNotation, isNumNotation, letClassPos, numClassPos } = getNotations({
     position,
