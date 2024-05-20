@@ -1,18 +1,23 @@
 import './styles/index.css';
-import { Theme } from '@/features/Theme';
+import { observer } from 'mobx-react-lite';
+
+import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { PlayGround } from '@/widgets/PlayGround';
 
 import { useTheme } from './hooks/useTheme';
+import { Theme } from './model/Theme';
 
-export function App() {
-  useTheme();
+const theme = new Theme();
+
+export const App = observer(() => {
+  useTheme(theme);
 
   return (
     <>
-      <Theme />
+      <ThemeSwitcher theme={theme} />
       <PlayGround />
     </>
   );
-}
+});
 
 App.displayName = 'App';

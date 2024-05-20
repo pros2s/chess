@@ -2,3 +2,8 @@
   margin: auto;
   margin-top: 50px;
 }
+
+.board {
+  overflow: hidden;
+  border-radius: 5px;
+}

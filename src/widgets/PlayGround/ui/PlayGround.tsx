@@ -42,7 +42,13 @@ export const PlayGround = ({ className }: PlayGroundProps) => {
         <SwapNotation onSwapV={handleSwapV} />
       </FlexBox>
 
-      <Board size={700} isFlipped={isFlipped} notationH={swappedH} notationV={swappedV} />
+      <Board
+        className={cls.board}
+        size={700}
+        isFlipped={isFlipped}
+        notationH={swappedH}
+        notationV={swappedV}
+      />
     </FlexBox>
   );
 };

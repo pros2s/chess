@@ -1,4 +1,5 @@
 module.exports = {
+  parser: '@typescript-eslint/parser',
   env: {
     browser: true,
     es2021: true,
@@ -13,8 +14,9 @@ module.exports = {
     'airbnb',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:mobx/recommended',
   ],
-  plugins: ['@typescript-eslint', 'prettier', 'pross-plugin'],
+  plugins: ['@typescript-eslint', 'mobx', 'prettier', 'pross-plugin'],
 
   rules: {
     'import/order': [
@@ -69,7 +71,13 @@ module.exports = {
     // pross
     'pross-plugin/path-watcher': ['error', { alias: '@' }],
     'pross-plugin/public-api-imports': ['error', { alias: '@' }],
-    'pross-plugin/fsd-layer-imports': ['error', { alias: '@' }],
+    'pross-plugin/fsd-layer-imports': [
+      'error',
+      {
+        alias: '@',
+        ignoreFilesPatterns: ['**/app/**'],
+      },
+    ],
 
     // off
     'import/no-extraneous-dependencies': 'off',
@@ -86,5 +94,8 @@ module.exports = {
     'function-paren-newline': 'off',
     'object-curly-newline': 'off',
     'operator-linebreak': 'off',
+
+    // mobx
+    'mobx/missing-observer': 'off',
   },
 };
