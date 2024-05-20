@@ -2,12 +2,15 @@ import { FlexBox } from '@/shared/ui/FlexBox';
 import { Square, SquareLetterType, SquareNumberType } from '@/shared/ui/square';
 import { SquareNotationH, SquareNotationV } from '@/shared/ui/square/SquareType';
 
-import { themes } from '../config/themes';
+import { piecesIcons } from '../config/piecesIcons';
+import { themesCfg } from '../config/themes';
 import { getIsPrimary } from '../helpers/getIsPrimary';
 import { getSquarePosition } from '../helpers/getSquarePosition';
-import { BoardTheme } from '../model/types/BoardType';
+import { getStartPosition } from '../helpers/getStartPosition';
+import { BoardPiecesThemeType, BoardTheme } from '../model/types/BoardType';
 
 interface BoardProps {
+  piecesTheme?: BoardPiecesThemeType;
   notationV?: SquareNotationV;
   notationH?: SquareNotationH;
   isFlipped?: boolean;
@@ -26,8 +29,10 @@ export const Board = ({
   isFlipped = false,
   notationH,
   notationV,
+  piecesTheme = 'lichess',
 }: BoardProps) => {
-  const [primary, secondary] = themes[theme];
+  const [primary, secondary] = themesCfg[theme];
+  const icons = piecesIcons[piecesTheme];
 
   const nums = isFlipped ? numbers.slice().reverse() : numbers;
   const lets = isFlipped ? letters.slice().reverse() : letters;
@@ -43,6 +48,7 @@ export const Board = ({
             const bgSecondary = getIsPrimary(i, ind) ? secondary : primary;
 
             const position = getSquarePosition(i, ind);
+            const piece = getStartPosition(number, letter);
 
             return (
               <Square
@@ -55,6 +61,8 @@ export const Board = ({
                 notationH={notationH}
                 notationV={notationV}
                 isFullNotation={false}
+                icons={icons}
+                piece={piece}
               />
             );
           })}

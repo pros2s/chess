@@ -12,3 +12,20 @@ export type SquarePositionType =
   | 'bottom-right'
   | 'bottom-left'
   | 'other';
+
+export type SquarePieceNameType =
+  | 'pawn'
+  | 'rook'
+  | 'knight'
+  | 'bishop'
+  | 'king'
+  | 'queen'
+  | 'empty';
+
+export type SquarePieceColorType = 'white' | 'black';
+export interface SquarePieceType {
+  name: SquarePieceNameType;
+  color?: SquarePieceColorType;
+}
+
+export type SquarePieceIconsType = Record<SquarePieceNameType, [string, string]>;

@@ -6,6 +6,8 @@ import {
   SquareNotationH,
   SquarePositionType,
   SquareNotationV,
+  SquarePieceType,
+  SquarePieceIconsType,
 } from './SquareType';
 import { getNotations } from './helpers/getNotations';
 
@@ -14,6 +16,8 @@ import cls from './Square.module.css';
 interface SquareProps {
   letter: SquareLetterType;
   number: SquareNumberType;
+  piece: SquarePieceType;
+  icons: SquarePieceIconsType;
   isFullNotation?: boolean;
   position?: SquarePositionType;
   notationV?: SquareNotationV;
@@ -33,18 +37,39 @@ export const Square = ({
   notationH,
   notationV,
   isFullNotation = false,
+  icons,
+  piece,
 }: SquareProps) => {
+  const { color, name } = piece;
+
   const { isLetNotation, isNumNotation, letClassPos, numClassPos } = getNotations({
     position,
     notationH,
     notationV,
   });
 
+  const handleClickSquare = () => {
+    console.log(name, color, `${letter}${number}`);
+  };
+
+  const getIcon = () => {
+    if (color === 'white') return icons[name][0];
+    if (color === 'black') return icons[name][1];
+
+    return undefined;
+  };
+
   return (
-    <div
+    <button
       style={{ backgroundColor: bgPrimary }}
       className={classNames(cls.square, ['w-100', 'h-100', className])}
+      type='button'
+      onClick={handleClickSquare}
     >
+      {name !== 'empty' && (
+        <img className={classNames(cls.piece, ['w-100', 'h-100'])} alt='piece' src={getIcon()} />
+      )}
+
       {!isFullNotation && isLetNotation && (
         <p style={{ color: bgSecondary }} className={classNames(cls.notation, [cls[letClassPos]])}>
           {letter}
@@ -62,7 +87,7 @@ export const Square = ({
           {number}
         </p>
       )}
-    </div>
+    </button>
   );
 };
 
