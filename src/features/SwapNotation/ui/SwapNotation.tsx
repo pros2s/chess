@@ -1,4 +1,5 @@
-import { useState } from 'preact/hooks';
+import { useState } from 'react';
+
 import { IoMdSwap } from 'react-icons/io';
 
 import { classNames } from '@/shared/lib/helpers/classNames';
@@ -28,7 +29,6 @@ export const SwapNotation = ({ className, onSwapH, onSwapV }: SwapNotationProps)
         [cls.vertical]: !!onSwapV,
       })}
       type='button'
-      label='swap-notation'
       onClick={handleSwap}
     >
       <IoMdSwap size={20} />

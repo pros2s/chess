@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'preact/hooks';
+import { useLayoutEffect } from 'react';
 
 import { APP_THEME } from '../consts/localeStorage';
 import { Theme } from '../model/Theme';

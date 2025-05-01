@@ -1,4 +1,5 @@
-import { useState } from 'preact/hooks';
+import { useState } from 'react';
+
 import { FaRotate } from 'react-icons/fa6';
 
 import { classNames } from '@/shared/lib/helpers/classNames';
@@ -22,7 +23,6 @@ export const FlipBoard = ({ className, onFlip }: FlipBoardProps) => {
     <button
       className={classNames(cls.flip, [className], { [cls.flipped]: isFlipped })}
       type='button'
-      label='flip-board'
       onClick={handleFlip}
     >
       <FaRotate size={20} />

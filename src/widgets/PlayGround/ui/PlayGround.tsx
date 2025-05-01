@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useState } from 'react';
 
 import { Board } from '@/entities/Board';
 import { FlipBoard } from '@/features/FlipBoard';
@@ -18,10 +18,7 @@ export const PlayGround = ({ className }: PlayGroundProps) => {
     setIsFlipped((prev) => !prev);
   };
 
-  const [swappedH, setSwappedH] = useState('left');
   const handleSwapH = () => {};
-
-  const [swappedV, setSwappedV] = useState('bottom');
   const handleSwapV = () => {};
 
   return (

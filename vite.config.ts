@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 
 import path from 'path';
 
-import preact from '@preact/preset-vite';
+import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 
 interface ViteConfigArgsType {
@@ -13,7 +13,7 @@ interface ViteConfigArgsType {
 export default ({ mode }: ViteConfigArgsType) =>
   defineConfig({
     base: './',
-    plugins: [preact(), svgr()],
+    plugins: [react(), svgr()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src/'),

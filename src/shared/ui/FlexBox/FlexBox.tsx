@@ -1,6 +1,4 @@
-import { Ref } from 'preact';
-
-import { HTMLAttributes, ReactNode, forwardRef } from 'preact/compat';
+import { HTMLAttributes, memo, ReactNode, Ref } from 'react';
 
 import { Classes, classNames } from '@/shared/lib/helpers/classNames';
 
@@ -17,6 +15,7 @@ interface FlexBoxProps extends HTMLAttributes<HTMLDivElement> {
   direction?: DirectionType;
   gap?: number | string;
   isWrap?: boolean;
+  ref?: Ref<HTMLDivElement>;
   className?: string;
 }
 
@@ -41,21 +40,19 @@ export const flexDirection: Record<DirectionType, string> = {
   row: cls.row,
 };
 
-export const FlexBox = forwardRef<HTMLDivElement, FlexBoxProps>(
-  (
-    {
-      children,
-      className,
-      align = 'start',
-      direction = 'row',
-      gap = 0,
-      justify = 'start',
-      isWrap,
-      style,
-      ...otherProps
-    },
-    ref: Ref<HTMLDivElement>,
-  ) => {
+export const FlexBox = memo(
+  ({
+    children,
+    className,
+    align = 'start',
+    direction = 'row',
+    gap = 0,
+    justify = 'start',
+    isWrap,
+    style,
+    ref,
+    ...otherProps
+  }: FlexBoxProps) => {
     const classes: Classes = [
       justifyPos[justify],
       alignPos[align],
