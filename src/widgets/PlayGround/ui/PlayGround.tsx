@@ -5,7 +5,6 @@ import { FlipBoard } from '@/features/FlipBoard';
 import { SwapNotation } from '@/features/SwapNotation';
 import { classNames } from '@/shared/lib/helpers/classNames';
 import { FlexBox } from '@/shared/ui/FlexBox';
-import { SquareNotationH, SquareNotationV } from '@/shared/ui/square/SquareType';
 
 import cls from './PlayGround.module.css';
 
@@ -19,15 +18,11 @@ export const PlayGround = ({ className }: PlayGroundProps) => {
     setIsFlipped((prev) => !prev);
   };
 
-  const [swappedH, setSwappedH] = useState<SquareNotationH>('left');
-  const handleSwapH = () => {
-    setSwappedH((prev) => (prev === 'left' ? 'right' : 'left'));
-  };
+  const [swappedH, setSwappedH] = useState('left');
+  const handleSwapH = () => {};
 
-  const [swappedV, setSwappedV] = useState<SquareNotationV>('bottom');
-  const handleSwapV = () => {
-    setSwappedV((prev) => (prev === 'bottom' ? 'top' : 'bottom'));
-  };
+  const [swappedV, setSwappedV] = useState('bottom');
+  const handleSwapV = () => {};
 
   return (
     <FlexBox
@@ -42,13 +37,7 @@ export const PlayGround = ({ className }: PlayGroundProps) => {
         <SwapNotation onSwapV={handleSwapV} />
       </FlexBox>
 
-      <Board
-        className={cls.board}
-        size={700}
-        isFlipped={isFlipped}
-        notationH={swappedH}
-        notationV={swappedV}
-      />
+      <Board className={cls.board} isFlipped={isFlipped} />
     </FlexBox>
   );
 };
