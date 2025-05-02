@@ -1,2 +1,2 @@
 export { Piece } from './Piece';
-export type { PieceDataIdType } from './Piece';
+export type { PieceNameType } from './Piece';

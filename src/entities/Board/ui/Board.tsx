@@ -1,14 +1,17 @@
+import { useState } from 'react';
+
 import boardIcon from '@/shared/assets/boards/lichess.png';
 import { classNames } from '@/shared/lib/helpers/classNames';
 import { getTestArray } from '@/shared/lib/helpers/getTestArray';
 import { AppImage } from '@/shared/ui/AppImage';
 import { FlexBox } from '@/shared/ui/FlexBox';
-import { Piece, PieceDataIdType } from '@/shared/ui/Piece';
+import { Piece, PieceNameType } from '@/shared/ui/Piece';
 
 import { piecesIcons } from '../config/piecesIcons';
 import { getPiece } from '../helpers/getPiece';
+import { useBoardClick } from '../hooks/useBoardClick';
 import { usePieceClick } from '../hooks/usePieceClick';
-import { BoardPiecesThemeType } from '../model/types/BoardType';
+import { BoardCoordsType, BoardPiecesThemeType } from '../model/types/BoardType';
 
 import cls from './Board.module.css';
 
@@ -23,12 +26,17 @@ const pieceSize = boardSize / 8;
 export const Board = ({ className, piecesTheme = 'lichess' }: BoardProps) => {
   const icons = piecesIcons[piecesTheme];
 
-  const handlePiece = usePieceClick();
+  const [coords, setCoords] = useState<BoardCoordsType>({ x: 0, y: 0 });
+  const [pieceName, setPieceName] = useState<PieceNameType>('black-rook');
+
+  const handlePiece = usePieceClick({ setCoords, setPieceName });
+  const handleBoard = useBoardClick({ coords, pieceName });
 
   return (
     <FlexBox
       style={{ width: boardSize, height: boardSize }}
       className={classNames(cls.board, [className])}
+      onClick={handleBoard}
     >
       <AppImage src={boardIcon} alt='board' />
 
@@ -36,7 +44,7 @@ export const Board = ({ className, piecesTheme = 'lichess' }: BoardProps) => {
       {getTestArray(8).map((elem) => {
         const { figure, postfix } = getPiece(icons, elem);
 
-        const dataId = `black-${postfix}` as PieceDataIdType;
+        const dataId = `black-${postfix}` as PieceNameType;
 
         return (
           <Piece
@@ -81,7 +89,7 @@ export const Board = ({ className, piecesTheme = 'lichess' }: BoardProps) => {
       {getTestArray(8).map((elem) => {
         const { figure, postfix } = getPiece(icons, elem);
 
-        const dataId = `white-${postfix}` as PieceDataIdType;
+        const dataId = `white-${postfix}` as PieceNameType;
 
         return (
           <Piece

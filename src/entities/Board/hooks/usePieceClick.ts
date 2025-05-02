@@ -1,10 +1,19 @@
-import { MouseEvent } from 'react';
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
-import { PieceDataIdType } from '@/shared/ui/Piece';
+import { PieceNameType } from '@/shared/ui/Piece';
 
-export const usePieceClick = () => (e: MouseEvent<HTMLButtonElement>) => {
-  const targetDataId = e.currentTarget.dataset.id as PieceDataIdType;
+import { BoardCoordsType } from '../model/types/BoardType';
 
-  console.log(e.clientX, e.clientY);
-  console.log(targetDataId);
-};
+interface PieceClickProps {
+  setCoords: Dispatch<SetStateAction<BoardCoordsType>>;
+  setPieceName: Dispatch<SetStateAction<PieceNameType>>;
+}
+
+export const usePieceClick =
+  ({ setCoords, setPieceName }: PieceClickProps) =>
+  (e: MouseEvent<HTMLButtonElement>) => {
+    const pieceName = e.currentTarget.dataset.id as PieceNameType;
+
+    setCoords({ x: e.clientX, y: e.clientY });
+    setPieceName(pieceName);
+  };

@@ -7,7 +7,7 @@ import { Button } from '../Button/Button';
 
 import cls from './Piece.module.css';
 
-export type PieceDataIdType =
+export type PieceNameType =
   | 'black-rook'
   | 'black-knight'
   | 'black-bishop'
@@ -25,7 +25,7 @@ interface PieceProps {
   icon: string;
   top: number;
   left: number;
-  dataId: PieceDataIdType;
+  dataId: PieceNameType;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   className?: string;
 }
