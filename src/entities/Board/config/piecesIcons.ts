@@ -11,10 +11,7 @@ import pawnW from '@/shared/assets/pieces/lichess/white/pawn.svg';
 import queenW from '@/shared/assets/pieces/lichess/white/queen.svg';
 import rookW from '@/shared/assets/pieces/lichess/white/rook.svg';
 
-import { BoardPiecesThemeType } from '../model/types/BoardType';
-
-type PiecesType = 'bishop' | 'knight' | 'pawn' | 'king' | 'queen' | 'rook';
-type PieceIconsType = Record<PiecesType, [string, string]>;
+import { BoardPiecesThemeType, PieceIconsType } from '../model/types/BoardType';
 
 export const piecesIcons: Record<BoardPiecesThemeType, PieceIconsType> = {
   lichess: {
