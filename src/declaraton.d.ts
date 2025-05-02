@@ -20,6 +20,4 @@ declare module '*.svg' {
   export default content;
 }
 
-declare global {
-  type SvgComponent = (props: SVGProps<SVGElement>) => ReactElement;
-}
+declare type SvgComponent = (props: SVGProps<SVGElement>) => ReactElement;
