@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import boardIcon from '@/shared/assets/boards/lichess.png';
 import { classNames } from '@/shared/lib/helpers/classNames';
@@ -8,10 +8,11 @@ import { FlexBox } from '@/shared/ui/FlexBox';
 import { Piece, PieceNameType } from '@/shared/ui/Piece';
 
 import { piecesIcons } from '../config/piecesIcons';
+import { BOARD_SIZE, PIECE_SIZE } from '../consts/board';
 import { getPiece } from '../helpers/getPiece';
 import { useBoardClick } from '../hooks/useBoardClick';
 import { usePieceClick } from '../hooks/usePieceClick';
-import { BoardCoordsType, BoardPiecesThemeType } from '../model/types/BoardType';
+import { BoardCoordsType, BoardPiecesThemeType, PiecePositionType } from '../model/types/BoardType';
 
 import cls from './Board.module.css';
 
@@ -20,21 +21,30 @@ interface BoardProps {
   className?: string;
 }
 
-const boardSize = 700;
-const pieceSize = boardSize / 8;
-
 export const Board = ({ className, piecesTheme = 'lichess' }: BoardProps) => {
   const icons = piecesIcons[piecesTheme];
 
-  const [coords, setCoords] = useState<BoardCoordsType>({ x: 0, y: 0 });
-  const [pieceName, setPieceName] = useState<PieceNameType>('black-rook');
+  const boardRef = useRef<HTMLDivElement>(null);
 
-  const handlePiece = usePieceClick({ setCoords, setPieceName });
-  const handleBoard = useBoardClick({ coords, pieceName });
+  const [coords, setCoords] = useState<BoardCoordsType>({ x: 0, y: 0 });
+  const [pieceName, setPieceName] = useState<PieceNameType>('');
+  const [position, setPosition] = useState<PiecePositionType>({ top: 0, left: 0 });
+
+  const handlePiece = usePieceClick({ setCoords, setPieceName, setPosition });
+  const handleBoard = useBoardClick({
+    boardRef,
+    coords,
+    pieceName,
+    position,
+    setCoords,
+    setPieceName,
+    setPosition,
+  });
 
   return (
     <FlexBox
-      style={{ width: boardSize, height: boardSize }}
+      ref={boardRef}
+      style={{ width: BOARD_SIZE, height: BOARD_SIZE }}
       className={classNames(cls.board, [className])}
       onClick={handleBoard}
     >
@@ -51,7 +61,7 @@ export const Board = ({ className, piecesTheme = 'lichess' }: BoardProps) => {
             dataId={dataId}
             key={elem}
             icon={figure[1]}
-            left={pieceSize * (elem - 1)}
+            left={PIECE_SIZE * (elem - 1)}
             top={0}
             onClick={handlePiece}
           />
@@ -65,8 +75,8 @@ export const Board = ({ className, piecesTheme = 'lichess' }: BoardProps) => {
           dataId='black-pawn'
           key={elem}
           icon={icons.pawn[1]}
-          left={pieceSize * (elem - 1)}
-          top={pieceSize}
+          left={PIECE_SIZE * (elem - 1)}
+          top={PIECE_SIZE}
           onClick={handlePiece}
         />
       ))}
@@ -78,8 +88,8 @@ export const Board = ({ className, piecesTheme = 'lichess' }: BoardProps) => {
           dataId='white-pawn'
           key={elem}
           icon={icons.pawn[0]}
-          left={pieceSize * (elem - 1)}
-          top={pieceSize * 6}
+          left={PIECE_SIZE * (elem - 1)}
+          top={PIECE_SIZE * 6}
           onClick={handlePiece}
         />
       ))}
@@ -96,8 +106,8 @@ export const Board = ({ className, piecesTheme = 'lichess' }: BoardProps) => {
             dataId={dataId}
             key={elem}
             icon={figure[0]}
-            left={pieceSize * (elem - 1)}
-            top={pieceSize * 7}
+            left={PIECE_SIZE * (elem - 1)}
+            top={PIECE_SIZE * 7}
             onClick={handlePiece}
           />
         );

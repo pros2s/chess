@@ -8,6 +8,7 @@ import { Button } from '../Button/Button';
 import cls from './Piece.module.css';
 
 export type PieceNameType =
+  | ''
   | 'black-rook'
   | 'black-knight'
   | 'black-bishop'
